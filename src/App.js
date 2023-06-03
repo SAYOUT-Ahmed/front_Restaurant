@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Sidebar from "./Composants/Sidebar";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import AdminLayout from "./Composants/Layout";
+import Dashboard from "./Composants/Dashboard";
+import ZoneCrud from "./Composants/Zones";
+import RestaurantCrud from "./Composants/Restaurants";
+import VilleCrud from "./Composants/Villes";
+import SpCrud from "./Composants/Specialites";
+import Details from "./Composants/Details";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      {/*<Routes>
+        <Route path='/' exact={true} element={<Villes/>}/>
+        <Route path='villes/:id' element={<AddVille/>}/>
+  </Routes>*/}
+      <Routes>
+        <Route path="/" element={<AdminLayout />}>
+
+          <Route path="" element={<Dashboard />} />
+          <Route path="zones" element={<ZoneCrud/>} />
+          <Route path="restaurants" element={<RestaurantCrud/>} />
+          <Route path="villes" element={<VilleCrud/>} />
+          <Route path="specialites" element={<SpCrud/>} />
+          <Route path=":id" element={<Details />} />
+        </Route>
+      </Routes>
+    </Router>
   );
 }
 
